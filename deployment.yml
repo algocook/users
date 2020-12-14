@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+      - name: users
+        image: gcr.io/PROJECT_ID/IMAGE:TAG
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 100m
+            memory: 512Mi
