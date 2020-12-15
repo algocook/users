@@ -9,6 +9,11 @@ import (
 	"google.golang.org/grpc/grpclog"
 )
 
+const (
+	user     = "users"
+	password = "users"
+)
+
 func main() {
 	// Create new gRPC server instance
 	s := grpc.NewServer()
