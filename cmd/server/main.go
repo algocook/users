@@ -1,10 +1,10 @@
 package main
 
 import (
-	"algocook/users/pkg/methods"
 	"net"
+	"users/pkg/methods"
 
-	pb "github.com/algocook/proto/users"
+	"github.com/algocook/proto/users"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
 )
@@ -20,7 +20,7 @@ func main() {
 	srv := &methods.UsersMainServer{}
 
 	// Register gRPC server
-	pb.RegisterUsersServer(s, srv)
+	users.RegisterUsersServer(s, srv)
 
 	// Listern on 5300
 	listener, err := net.Listen("tcp", ":5300")

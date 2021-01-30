@@ -3,15 +3,15 @@ package methods
 import (
 	"context"
 
-	pb "github.com/algocook/proto/users"
+	"github.com/algocook/proto/users"
 )
 
 // UsersMainServer comment
 type UsersMainServer struct{}
 
 // GetUser gRPC function
-func (s *UsersMainServer) GetUser(c context.Context, request *pb.GetUserRequest) (response *pb.GetUserResponse, err error) {
-	response = &pb.GetUserResponse{}
+func (s *UsersMainServer) GetUser(c context.Context, request *users.GetUserRequest) (response *users.GetUserResponse, err error) {
+	response = &users.GetUserResponse{}
 
 	client, err := NewPostgresClient("users")
 	if err != nil {
@@ -30,8 +30,8 @@ func (s *UsersMainServer) GetUser(c context.Context, request *pb.GetUserRequest)
 }
 
 // CheckUsername method
-func (s *UsersMainServer) CheckUsername(c context.Context, request *pb.CheckUsernameRequest) (response *pb.CheckUsernameResponse, err error) {
-	response = &pb.CheckUsernameResponse{}
+func (s *UsersMainServer) CheckUsername(c context.Context, request *users.CheckUsernameRequest) (response *users.CheckUsernameResponse, err error) {
+	response = &users.CheckUsernameResponse{}
 
 	client, err := NewPostgresClient("users")
 	if err != nil {
@@ -49,8 +49,8 @@ func (s *UsersMainServer) CheckUsername(c context.Context, request *pb.CheckUser
 }
 
 // PostUser gRPC function
-func (s *UsersMainServer) PostUser(c context.Context, request *pb.PostUserRequest) (response *pb.PostUserResponse, err error) {
-	response = &pb.PostUserResponse{}
+func (s *UsersMainServer) PostUser(c context.Context, request *users.PostUserRequest) (response *users.PostUserResponse, err error) {
+	response = &users.PostUserResponse{}
 
 	client, err := NewPostgresClient("users")
 	if err != nil {

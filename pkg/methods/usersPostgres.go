@@ -24,7 +24,7 @@ type PostgresClient struct {
 
 // NewPostgresClient init
 func NewPostgresClient(dbname string) (*PostgresClient, error) {
-	db, err := sqlx.Connect("postgres", fmt.Sprintf("host=35.228.219.69 user=users password=users dbname=%s sslmode=disable", dbname))
+	db, err := sqlx.Connect("postgres", fmt.Sprintf("host=postgres user=users password=users dbname=%s sslmode=disable", dbname))
 	if err != nil {
 		return nil, err
 	}
@@ -59,6 +59,8 @@ func (client *PostgresClient) InsertNewUser(username string, title string, descr
 	if !resCheck {
 		return 0, errors.New("Username is not available")
 	}
+
+	fmt.Print(resCheck)
 
 	var lastInsertedID int64
 	err := client.db.QueryRow("INSERT INTO users (username, title, description) VALUES ($1, $2, $3) RETURNING id", username, title, description).Scan(&lastInsertedID)
